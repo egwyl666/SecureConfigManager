@@ -1,29 +1,23 @@
 import json
 from cryptography.fernet import Fernet
 
-# Функція для завантаження конфігурації з файлу
-
-
+# Function to load configuration from a file
 def load_config(filename='config.json'):
     with open(filename, 'r') as file:
         config = json.load(file)
     return config
 
-# Функція для збереження конфігурації у файл
-
-
+# Function to save configuration to a file
 def save_config(config, filename='unprotected_config.json'):
     with open(filename, 'w') as file:
         json.dump(config, file, indent=4)
 
-# Функція для шифрування даних конфігурації
-
-
+# Function to encrypt configuration data
 def encrypt_config_data(config, key):
-    # Створюємо об'єкт Fernet з використанням ключа
+    # Create a Fernet object using the key
     fernet = Fernet(key)
     encrypted_config = {}
-    # Шифруємо логіни та паролі кожного користувача в конфігурації
+    # Encrypt the login and password of each user in the configuration
     for user in config['users']:
         encrypted_login = fernet.encrypt(user['login'].encode()).decode()
         encrypted_password = fernet.encrypt(user['password'].encode()).decode()
@@ -33,14 +27,12 @@ def encrypt_config_data(config, key):
             'users', []) + [encrypted_user]
     return encrypted_config
 
-# Функція для дешифрування даних конфігурації
-
-
+# Function to decrypt configuration data
 def decrypt_config_data(encrypted_config, key):
-    # Створюємо об'єкт Fernet з використанням ключа
+    # Create a Fernet object using the key
     fernet = Fernet(key)
     decrypted_config = {'users': []}
-    # Дешифруємо логіни та паролі кожного користувача в конфігурації
+    # Decrypt the login and password of each user in the configuration
     for user in encrypted_config['users']:
         decrypted_login = fernet.decrypt(user['login'].encode()).decode()
         decrypted_password = fernet.decrypt(user['password'].encode()).decode()
@@ -49,28 +41,22 @@ def decrypt_config_data(encrypted_config, key):
         decrypted_config['users'].append(decrypted_user)
     return decrypted_config
 
-# Функція для приховування даних конфігурації шляхом їх шифрування та збереження в новому файлі
-
-
+# Function to hide configuration data by encrypting and saving in a new file
 def hide_config_data(key, config_filename='config.json', protected_filename='protected_config.json'):
-    # Завантажуємо конфігурацію з файлу
+    # Load configuration from file
     config = load_config(config_filename)
-    # Шифруємо дані конфігурації
+    # Encrypt the configuration data
     encrypted_config = encrypt_config_data(config, key)
-    # Зберігаємо зашифровану конфігурацію у новому файлі
+    # Save the encrypted configuration in a new file
     save_config(encrypted_config, protected_filename)
-    print(
-        f"Дані конфігурації успішно захищено та збережено у файлі '{protected_filename}'")
+    print(f"Configuration data successfully protected and saved in the file '{protected_filename}'")
 
-# Функція для відображення даних конфігурації шляхом їх дешифрування та збереження у новому файлі
-
-
+# Function to display configuration data by decrypting and saving in a new file
 def show_config_data(key, protected_filename='protected_config.json', unprotected_filename='unprotected_config.json'):
-    # Завантажуємо зашифровану конфігурацію з файлу
+    # Load the encrypted configuration from file
     encrypted_config = load_config(protected_filename)
-    # Розшифровуємо дані конфігурації
+    # Decrypt the configuration data
     decrypted_config = decrypt_config_data(encrypted_config, key)
-    # Зберігаємо розшифровану конфігурацію у новому файлі
+    # Save the decrypted configuration in a new file
     save_config(decrypted_config, unprotected_filename)
-    print(
-        f"Дані конфігурації успішно відновлено та збережено у файлі '{unprotected_filename}'")
+    print(f"Configuration data successfully restored and saved in the file '{unprotected_filename}'")

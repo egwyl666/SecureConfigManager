@@ -3,68 +3,68 @@ from config_protector import hide_config_data, show_config_data
 
 key = b'5tlOpu2Bvib0m_yllgmzfhYVmonJNUR7bKCcdNh827Y='
 
-# Сховати дані конфігурації
+# Hide the configuration data
 hide_config_data(key)
-# Відновити сховані дані конфігурації
+# Restore the hidden configuration data
 show_config_data(key)
 
 
 def load_config(filename='config.json'):
-    # Завантажуємо конфігурацію з файлу
+    # Load the configuration from a file
     with open(filename, 'r') as file:
         config = json.load(file)
     return config
 
 
 def greet_user(login):
-    # Привітати користувача
-    print(f"Вітаємо, {login}!")
+    # Greet the user
+    print(f"Welcome, {login}!")
 
 
 def check_password(users, max_attempts):
-    # Перевірка пароля користувача
+    # Check the user's password
     for _ in range(max_attempts):
-        password = input("Будь ласка, введіть ваш пароль: ")
-        # Перевіряємо пароль для кожного користувача в списку
+        password = input("Please enter your password: ")
+        # Check the password for each user in the list
         for user in users:
             if password == user['password']:
                 return user['login']
-        # Виводимо повідомлення про невірний пароль
-        print("Невірний пароль. Повторна спроба.")
+        # Display a message about the wrong password
+        print("Incorrect password. Try again.")
     return 'Intruder'
 
 
 def check_auth_code(auth_code, max_attempts):
-    # Перевірка коду аутентифікації
+    # Check the authentication code
     for _ in range(max_attempts):
-        entered_code = input("Будь ласка, введіть код автентифікації: ")
+        entered_code = input("Please enter the authentication code: ")
         if entered_code == auth_code:
             return True
-        # Виводимо повідомлення про невірний код аутентифікації
-        print("Невірний код аутентифікації. Повторна спроба.")
+        # Display a message about the wrong authentication code
+        print("Incorrect authentication code. Try again.")
     return False
 
 
 def main():
-    # Завантажуємо конфігурацію
+    # Load the configuration
     config = load_config()
     users = config['users']
     auth_code = config['auth_code']
     max_attempts = config['attempts']
 
-    # Перевіряємо пароль користувача
+    # Check the user's password
     user = check_password(users, max_attempts)
     if user != 'Intruder':
-        # Привітати користувача
+        # Greet the user
         greet_user(user)
-        # Перевіряємо код аутентифікації
+        # Check the authentication code
         if check_auth_code(auth_code, max_attempts):
             greet_user(user)
         else:
             print(
-                "Досягнуто максимальну кількість спроб введення коду аутентифікації. Доступ заборонено.")
+                "Maximum number of authentication code entry attempts reached. Access denied.")
     else:
-        print("Досягнуто максимальну кількість спроб введення пароля. Доступ заборонено.")
+        print("Maximum number of password entry attempts reached. Access denied.")
 
 
 if __name__ == "__main__":
