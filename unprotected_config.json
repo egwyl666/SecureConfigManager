@@ -1,0 +1,16 @@
+{
+    "users": [
+        {
+            "login": "Alice",
+            "password": "C00peR"
+        },
+        {
+            "login": "Bob",
+            "password": "uNc1e"
+        },
+        {
+            "login": "Carl",
+            "password": "ClariNet"
+        }
+    ]
+}

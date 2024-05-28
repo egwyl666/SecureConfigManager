@@ -1,0 +1,16 @@
+{
+    "users": [
+        {
+            "login": "gAAAAABl-B_gqBeyCZoHyNvx4QD_M7OoqRT9rBBvwMDj53Qw-j6JJzX_A-KiPHQ1FasHHbYkduY_2LtG95gNAPVEoNlvx9ztaQ==",
+            "password": "gAAAAABl-B_gtNcBxuHMoOSxHmgYEhjFSij1NAN6af7nEWJHV8QZKS5MEAyYdNe1r0CVzYdsJtWLw5rdSI6txlw6tY_yNOJdvg=="
+        },
+        {
+            "login": "gAAAAABl-B_gH-eVhPdZr8Oz9Unj3X5qMiDVbUmKiv4ofLHhdOieLjpJ3f9vSUaBTmXGmp9d6v_BuKEsHMnr89czg1TRTF6V3Q==",
+            "password": "gAAAAABl-B_gd5DKyZ2HYAzS21PkIT0JEwt7ZLxwQjhqISb_ZBXNdcIrYTby07Ejn1BBH1vy0RFRHXAAE2Rf9X7deEJ5wOX2EQ=="
+        },
+        {
+            "login": "gAAAAABl-B_gyzFRbQE4JkSJVuRiFKsxhP9OG_lQzW-bDHTI1r-gUYgJ_uZI0IWf4wQy3bU9uUfNHOq96rfDPrwgkeBWcjGxTg==",
+            "password": "gAAAAABl-B_gezSM7wKgVFJTNmwC1p_CiMVZxRpUAtv97mTh3LnWjraC023BYC9FqVUJSuWM7RdckzJeFE3x96GrSlqnhvWwcQ=="
+        }
+    ]
+}
