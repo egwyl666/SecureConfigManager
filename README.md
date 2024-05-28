@@ -26,7 +26,8 @@ These instructions will help you to set up and run Secure Config Manager on your
    cd secure-config-manager
     ```
 2. **Install required packages:**
-   ```python pip install -r requirements.txt
+   ```python
+   pip install -r requirements.txt
    ```
 
 ## Usage
